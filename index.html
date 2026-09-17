@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Douglas Ong · Property Consultant, FLP Realty</title>
+<meta name="description" content="Douglas Ong, Property Consultant at FLP Realty Sdn Bhd — clear, pressure-free property advice across Penang and Malaysia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#12151A;
+  --ink-mid:#232A33;
+  --ink-soft:#5A5145;
+  --paper:#F1ECDF;
+  --paper-deep:#E6DDC6;
+  --white:#FFFFFF;
+  --brass:#C89B5C;
+  --brass-deep:#9C7539;
+  --brass-pale:#E7CE9E;
+  --clay:#8B5E3C;
+  --line-dark:rgba(18,21,26,.14);
+  --line-light:rgba(255,255,255,.16);
+
+  --font-display:"Newsreader",serif;
+  --font-body:"Public Sans",sans-serif;
+}
+:root[data-theme="dark"]{ --paper:#1A1D22; --white:#20242B; --ink-soft:#C9C2B4; --line-dark:rgba(255,255,255,.14); }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+
+/* ===== NAV ===== */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(18,21,26,.72);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-light);
+}
+nav.wrap{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brandmark{display:flex;flex-direction:column;line-height:1.2}
+.brandmark .name{font-family:var(--font-display);font-weight:500;font-size:1.15rem;color:var(--brass-pale)}
+.brandmark .co{font-family:var(--font-body);font-size:.7rem;color:rgba(255,255,255,.55);margin-top:1px;letter-spacing:.02em}
+.nav-links{display:none;gap:30px;font-size:.9rem;color:rgba(255,255,255,.72)}
+.nav-links a{position:relative;padding-bottom:3px}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--brass);transform:scaleX(0);transform-origin:left;
+  transition:transform .25s ease;
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* ===== BUTTONS ===== */
+.btn{
+  font-family:var(--font-body);font-weight:600;font-size:.9rem;
+  padding:14px 26px;border-radius:3px;border:1.5px solid transparent;
+  transition:background .2s ease,color .2s ease,border-color .2s ease;
+  white-space:nowrap;display:inline-flex;align-items:center;gap:8px;
+}
+.btn.solid{background:var(--brass);border-color:var(--brass);color:#1A140A}
+.btn.solid:hover{background:var(--brass-pale);border-color:var(--brass-pale)}
+.btn.ghost{border-color:rgba(255,255,255,.4);color:var(--white)}
+.btn.ghost:hover{border-color:var(--white)}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  color:var(--white);
+  background:var(--ink);
+  overflow:hidden;
+}
+.hero-photo{
+  position:absolute;inset:0;
+  background:url('images/www.jpg') center 32%/cover no-repeat;
+}
+.hero-scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(100deg, rgba(14,16,20,.94) 0%, rgba(14,16,20,.82) 32%, rgba(14,16,20,.35) 58%, rgba(14,16,20,.55) 78%, rgba(14,16,20,.88) 100%),
+    linear-gradient(0deg, rgba(10,11,14,.55) 0%, transparent 42%);
+}
+.hero-content{position:relative;z-index:2;padding:180px 0 72px;width:100%}
+.hero-eyebrow{
+  font-family:var(--font-display);font-style:italic;font-weight:400;
+  font-size:1.08rem;color:var(--brass-pale);margin-bottom:22px;
+  animation:riseIn .8s ease both;
+}
+h1{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(2.5rem,5.6vw,4.2rem);
+  line-height:1.06;letter-spacing:-.01em;max-width:760px;
+  animation:riseIn .8s .08s ease both;
+}
+.hero-sub{
+  margin-top:26px;font-size:1.08rem;max-width:460px;color:rgba(255,255,255,.78);
+  animation:riseIn .8s .16s ease both;
+}
+.hero-actions{margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;animation:riseIn .8s .24s ease both}
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+.hero-portrait{
+  position:absolute;right:5%;bottom:0;z-index:1;
+  height:88%;max-height:760px;
+  -webkit-mask-image:linear-gradient(to bottom, black 82%, transparent 100%);
+  mask-image:linear-gradient(to bottom, black 82%, transparent 100%);
+}
+.hero-portrait img{height:100%;width:auto;object-fit:cover;object-position:top center;filter:saturate(1.02)}
+
+/* ===== SECTION ===== */
+section{padding:118px 0}
+.section-head{max-width:620px;margin-bottom:56px}
+.section-head .kicker{
+  font-family:var(--font-display);font-style:italic;color:var(--clay);font-size:1.05rem;margin-bottom:10px;display:block;
+}
+.section-head h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(1.9rem,3.6vw,2.7rem);letter-spacing:-.01em;
+  color:var(--ink);
+}
+.section-head p{margin-top:16px;color:var(--ink-soft);font-size:1.03rem;max-width:520px}
+
+/* ===== STORY ===== */
+.story{background:var(--paper)}
+.philosophy{
+  display:grid;grid-template-columns:.92fr 1.32fr;gap:60px;align-items:start;
+}
+.story-frame{
+  border-radius:2px;overflow:hidden;aspect-ratio:4/5;
+  border:1px solid var(--line-dark);
+}
+.story-frame img{width:100%;height:100%;object-fit:cover}
+.philosophy-body p{font-size:1.04rem;color:var(--ink-soft);margin-bottom:22px}
+.philosophy-body p:first-of-type::first-letter{
+  font-family:var(--font-display);font-size:3.6rem;font-weight:500;color:var(--clay);
+  float:left;line-height:.78;padding-right:10px;padding-top:8px;
+}
+.philosophy blockquote{
+  font-family:var(--font-display);font-style:italic;font-weight:500;font-size:1.42rem;
+  line-height:1.4;color:var(--ink);border-left:2px solid var(--brass);
+  padding:2px 0 2px 22px;margin:30px 0;
+}
+
+/* ===== APPROACH ===== */
+.approach{background:var(--paper-deep)}
+.approach-top{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center;margin-bottom:64px}
+.approach-namecard{border-radius:2px;overflow:hidden;border:1px solid var(--line-dark);aspect-ratio:1400/800}
+.approach-namecard img{width:100%;height:100%;object-fit:cover;display:block}
+.approach-top-text p{margin-top:16px;color:var(--ink-soft);font-size:1.04rem;max-width:480px}
+.approach-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.approach-card{border:1px solid var(--line-dark);border-radius:2px;overflow:hidden;background:var(--white)}
+.approach-card .photo{aspect-ratio:4/3;overflow:hidden}
+.approach-card .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.approach-card .body{padding:22px 24px 28px}
+.approach-card .tag{display:block;font-size:.78rem;letter-spacing:.08em;color:var(--brass-deep);font-weight:600;margin-bottom:12px}
+.approach-card h3{font-family:var(--font-display);font-weight:500;font-size:1.3rem;color:var(--ink);margin-bottom:8px}
+.approach-card p{font-size:.95rem;line-height:1.6;color:var(--ink-soft)}
+
+/* ===== RECOGNITION ===== */
+.recognition{background:var(--ink);color:var(--white)}
+.recognition .section-head h2{color:var(--white)}
+.recognition .section-head p{color:rgba(255,255,255,.6)}
+.recognition .section-head .kicker{color:var(--brass-pale)}
+.recognition-top{display:grid;grid-template-columns:1.3fr .8fr;gap:56px;align-items:start;margin-bottom:64px}
+.stat-row{display:flex;flex-wrap:wrap;gap:40px;padding-bottom:8px}
+.stat{min-width:150px}
+.stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,4vw,3.1rem);color:var(--brass-pale);line-height:1}
+.stat .label{margin-top:10px;font-size:.92rem;color:rgba(255,255,255,.62);max-width:200px}
+.recognition-portrait{border-radius:2px;overflow:hidden;border:1px solid var(--line-light);aspect-ratio:3/4;background:#0B0D10}
+.recognition-portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.recognition-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.recognition-grid figure{border-radius:2px;overflow:hidden;border:1px solid var(--line-light);background:#0B0D10;aspect-ratio:1/1}
+.recognition-grid img{width:100%;height:100%;object-fit:cover;display:block}
+.recognition-grid figcaption{padding:14px 16px 18px;font-size:.86rem;color:rgba(255,255,255,.6)}
+
+/* ===== CUSTOMERS ===== */
+.customers{background:var(--paper)}
+.customer-marquee{
+  overflow:hidden;position:relative;margin:0 -32px;
+  -webkit-mask-image:linear-gradient(to right, transparent 0, black 60px, black calc(100% - 60px), transparent 100%);
+  mask-image:linear-gradient(to right, transparent 0, black 60px, black calc(100% - 60px), transparent 100%);
+}
+.customer-track{
+  display:flex;align-items:center;gap:18px;width:max-content;
+  animation:customerScroll 32s linear infinite;
+}
+.customer-marquee:hover .customer-track{animation-play-state:paused}
+.customer-card{
+  flex:0 0 auto;width:220px;aspect-ratio:3/4;border-radius:2px;overflow:hidden;
+  border:1px solid var(--line-dark);
+}
+.customer-card img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes customerScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media(max-width:560px){
+  .customer-card{width:160px}
+  .customer-marquee{margin:0 -22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .customer-track{animation:none}
+}
+.customer-note{
+  margin-top:8px;padding-top:40px;
+  font-family:var(--font-display);font-style:italic;font-size:1.28rem;color:var(--ink);text-align:left;max-width:640px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.5);
+  padding:30px 0;font-size:.84rem;
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:84px;
+}
+
+/* ===== BOTTOM BAR ===== */
+.bottom-bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  background:var(--ink);border-top:1px solid var(--line-light);
+  display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 32px 14px;
+}
+.bottom-brand{font-family:var(--font-display);font-weight:500;font-size:1.05rem;color:var(--brass-pale);white-space:nowrap}
+.bottom-items{display:flex;align-items:center;gap:34px}
+.bottom-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.bottom-item .icon-btn{
+  display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+  border-radius:50%;border:1.5px solid var(--brass);background:transparent;color:var(--brass-pale);
+  transition:background .2s ease,color .2s ease;
+}
+.bottom-item .icon-btn img{width:20px;height:20px;object-fit:contain}
+.bottom-item:hover .icon-btn{background:var(--brass);color:#1A140A}
+.bottom-item .label{font-weight:500;font-size:.74rem;color:rgba(255,255,255,.6);white-space:nowrap}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:900px){.nav-links{display:flex}}
+@media(max-width:900px){
+  .hero-portrait{display:none}
+  .hero-scrim{background:linear-gradient(180deg, rgba(14,16,20,.55), rgba(14,16,20,.9) 60%, rgba(14,16,20,.96))}
+  .philosophy{grid-template-columns:1fr;gap:32px}
+  .story-frame{max-width:320px;aspect-ratio:4/3}
+  .approach-top{grid-template-columns:1fr;gap:28px}
+  .approach-namecard{max-width:420px}
+  .approach-cards{grid-template-columns:1fr 1fr}
+  .recognition-top{grid-template-columns:1fr;gap:32px}
+  .recognition-portrait{max-width:320px;aspect-ratio:4/3}
+  .recognition-grid{grid-template-columns:1fr 1fr}
+  .customer-card{width:190px}
+  .stat-row{gap:32px}
+}
+@media(max-width:560px){
+  section{padding:84px 0}
+  .wrap{padding:0 22px}
+  .hero-content{padding:150px 0 56px}
+  .recognition-grid{grid-template-columns:1fr}
+  .approach-cards{grid-template-columns:1fr}
+
+  .bottom-brand{display:none}
+  .bottom-bar{justify-content:center;padding:10px 18px 12px}
+  .bottom-items{gap:26px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  h1,.hero-sub,.hero-eyebrow,.hero-actions{animation:none}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brandmark">
+      <span class="name">Douglas Ong</span>
+      <span class="co">FLP Realty Sdn Bhd</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#recognition">Recognition</a></li>
+      <li><a href="#customers">Customers</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-portrait"><img src="images/Profile.jpeg" alt="Douglas Ong, Property Consultant at FLP Realty"></div>
+  <div class="hero-content wrap">
+    <span class="hero-eyebrow">FLP Realty Sdn Bhd</span>
+    <h1>Property decisions you can feel good about.</h1>
+    <p class="hero-sub">
+      Douglas Ong helps clients navigate Malaysia's property market with clear
+      information and a client-first approach — no pressure, just honest guidance
+      from first conversation to signed deal.
+    </p>
+    <div class="hero-actions">
+      <a class="btn solid" href="https://wa.me/60125563818" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a class="btn ghost" href="https://www.instagram.com/dxuglas_ong/" target="_blank" rel="noopener">View Instagram</a>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Philosophy</span>
+      <h2>Property, made simple.</h2>
+    </div>
+    <div class="philosophy">
+      <div class="story-frame">
+        <img src="images/BG2.jpg" alt="A warm, well-kept home interior">
+      </div>
+      <div class="philosophy-body">
+        <p>Douglas Ong is a Property Consultant with FLP Realty Sdn Bhd, working with clients across residential and investment properties in Malaysia.</p>
+        <p>His approach is straightforward: understand what a client actually needs, then guide them toward a property that genuinely fits — without the sales pressure.</p>
+        <blockquote>Property advice built on clarity,<br>not pressure.</blockquote>
+        <p>Whether it's a first home or the next addition to a portfolio, Douglas keeps the process clear, honest, and easy to follow — from the first conversation to the signed deal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <div class="approach-top">
+      <div class="approach-namecard">
+        <img src="images/NM.png" alt="Douglas Ong, FLP Realty Sdn Bhd, Project Manager namecard">
+      </div>
+      <div class="approach-top-text">
+        <div class="section-head" style="margin-bottom:0">
+          <span class="kicker">Approach</span>
+          <h2>What he focuses on.</h2>
+        </div>
+        <p>Three things guide every deal Douglas works on, whether it's a first home or the fifth unit in a portfolio.</p>
+      </div>
+    </div>
+    <div class="approach-cards">
+      <div class="approach-card">
+        <div class="photo"><img src="images/BG1.jpg" alt="Client-first approach"></div>
+        <div class="body">
+          <span class="tag">01 / CLIENT-FIRST</span>
+          <h3>What you need, not what closes fastest</h3>
+          <p>Every conversation starts with a client's actual goals — not the listing that's easiest to sell.</p>
+        </div>
+      </div>
+      <div class="approach-card">
+        <div class="photo"><img src="images/BG6.jpg" alt="Residential neighbourhood"></div>
+        <div class="body">
+          <span class="tag">02 / COVERAGE</span>
+          <h3>Residential and investment</h3>
+          <p>Works across first homes and investment-focused purchases, in Penang and beyond.</p>
+        </div>
+      </div>
+      <div class="approach-card">
+        <div class="photo"><img src="images/BG4.jpg" alt="Clean architectural lines"></div>
+        <div class="body">
+          <span class="tag">03 / STYLE</span>
+          <h3>Straight talk, no rush</h3>
+          <p>Numbers and process, explained plainly, with room to think before deciding.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="recognition" id="recognition">
+  <div class="wrap">
+    <div class="recognition-top">
+      <div class="recognition-text">
+        <div class="section-head">
+          <span class="kicker">Recognition</span>
+          <h2>Ranked among Malaysia's top performers.</h2>
+          <p>Results from January 2025, among agents at FLP Realty and the wider Million Success Group network.</p>
+        </div>
+        <div class="stat-row">
+          <div class="stat">
+            <div class="num">#1</div>
+            <div class="label">Top producer, January 2025, Million Success Group</div>
+          </div>
+          <div class="stat">
+            <div class="num">RM88.1k</div>
+            <div class="label">Commission generated in a single month</div>
+          </div>
+          <div class="stat">
+            <div class="num">Top 5</div>
+            <div class="label">Finish among all ranked agents that month</div>
+          </div>
+        </div>
+      </div>
+      <div class="recognition-portrait">
+        <img src="images/R2.jpeg" alt="Douglas Ong recognised as Top Producer">
+      </div>
+    </div>
+    <div class="recognition-grid">
+      <figure><img src="images/R1.jpeg" alt="Douglas Ong, Top 1, January 2025, Million Success Group"></figure>
+      <figure><img src="images/R3.jpeg" alt="Douglas Ong named Champion, Top of January 2025"></figure>
+      <figure><img src="images/R4.jpeg" alt="Douglas Ong, 1st Runner Up, Top of the August 2024, Million Success Group"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="customers" id="customers">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Customers</span>
+      <h2>Trusted by the people he serves.</h2>
+      <p>Every property journey is different. Douglas is grateful to every customer who has trusted him along the way — from the first conversation to a place they can truly call home.</p>
+    </div>
+    <div class="customer-marquee">
+      <div class="customer-track">
+        <div class="customer-card"><img src="images/C1.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C2.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C3.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C4.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C5.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C6.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C1.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C2.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C3.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C4.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C5.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card"><img src="images/C6.jpeg" alt="Customer handover" loading="lazy"></div>
+      </div>
+    </div>
+    <p class="customer-note">"Thank you for every trust, every referral, and every opportunity to be part of your property journey."</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>&copy; <span id="year"></span> FLP Realty Sdn Bhd &middot; Douglas Ong</span>
+  <span>Where property meets strategy</span>
+</footer>
+
+<div class="bottom-bar">
+  <span class="bottom-brand">FLP Realty Sdn Bhd</span>
+  <div class="bottom-items">
+    <a class="bottom-item" href="https://wa.me/60125563818" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <span class="icon-btn"><img src="images/WA.png" alt=""></span>
+      <span class="label">WhatsApp</span>
+    </a>
+    <a class="bottom-item" href="tel:+60125563818" aria-label="Call">
+      <span class="icon-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 0 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </span>
+      <span class="label">012-556 3818</span>
+    </a>
+    <a class="bottom-item" href="https://www.instagram.com/dxuglas_ong/" target="_blank" rel="noopener" aria-label="Instagram">
+      <span class="icon-btn"><img src="images/IG.png" alt=""></span>
+      <span class="label">@dxuglas_ong</span>
+    </a>
+  </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
