@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Public+Sans:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -25,8 +25,8 @@
   --line-dark:rgba(18,21,26,.14);
   --line-light:rgba(255,255,255,.16);
 
-  --font-display:"Newsreader",serif;
-  --font-body:"Public Sans",sans-serif;
+  --font-display:"Newsreader","Noto Serif SC","Songti SC","STSong",serif;
+  --font-body:"Public Sans","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
 }
 :root[data-theme="dark"]{ --paper:#1A1D22; --white:#20242B; --ink-soft:#C9C2B4; --line-dark:rgba(255,255,255,.14); }
 
@@ -123,6 +123,32 @@ h1{
 }
 .hero-portrait img{height:100%;width:auto;object-fit:cover;object-position:top center;filter:saturate(1.02)}
 
+/* ===== LANGUAGE SWITCH ===== */
+.lang-switch{display:inline-flex;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.28);border-radius:999px}
+.lang-switch button{
+  font-family:var(--font-body);font-weight:600;font-size:.78rem;letter-spacing:.02em;
+  color:rgba(255,255,255,.7);background:transparent;border:0;border-radius:999px;
+  padding:6px 14px;cursor:pointer;transition:background .2s ease,color .2s ease;
+}
+.lang-switch button:hover{color:var(--white)}
+.lang-switch button[aria-pressed="true"]{background:var(--brass);color:#1A140A}
+
+/* Chinese typography: no italics, looser line-height, no drop cap */
+:lang(zh) .kicker,
+:lang(zh) .hero-eyebrow,
+:lang(zh) blockquote,
+:lang(zh) .customer-note{font-style:normal}
+:lang(zh) h1{line-height:1.28;letter-spacing:0}
+:lang(zh) .section-head h2{line-height:1.3;letter-spacing:0}
+:lang(zh) .hero-sub,
+:lang(zh) .philosophy-body p,
+:lang(zh) .approach-card p{line-height:1.85}
+:lang(zh) .approach-card .tag{letter-spacing:.04em}
+:lang(zh) .philosophy-body p:first-of-type::first-letter{
+  float:none;font-size:inherit;font-weight:inherit;color:inherit;
+  line-height:inherit;padding:0;font-family:inherit;
+}
+
 /* ===== SECTION ===== */
 section{padding:118px 0}
 .section-head{max-width:620px;margin-bottom:56px}
@@ -135,6 +161,10 @@ section{padding:118px 0}
   color:var(--ink);
 }
 .section-head p{margin-top:16px;color:var(--ink-soft);font-size:1.03rem;max-width:520px}
+.role-list{margin-top:18px;display:grid;gap:8px;max-width:520px;font-size:1.03rem;color:rgba(255,255,255,.72)}
+.role-list li{position:relative;padding-left:22px}
+.role-list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--brass);transform:rotate(45deg)}
+:lang(zh) .role-list li{line-height:1.7}
 
 /* ===== STORY ===== */
 .story{background:var(--paper)}
@@ -177,12 +207,13 @@ section{padding:118px 0}
 .recognition .section-head h2{color:var(--white)}
 .recognition .section-head p{color:rgba(255,255,255,.6)}
 .recognition .section-head .kicker{color:var(--brass-pale)}
-.recognition-top{display:grid;grid-template-columns:1.3fr .8fr;gap:56px;align-items:start;margin-bottom:64px}
+.recognition-top{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start;margin-bottom:64px}
 .stat-row{display:flex;flex-wrap:wrap;gap:40px;padding-bottom:8px}
 .stat{min-width:150px}
 .stat .num{font-family:var(--font-display);font-weight:500;font-size:clamp(2.2rem,4vw,3.1rem);color:var(--brass-pale);line-height:1}
 .stat .label{margin-top:10px;font-size:.92rem;color:rgba(255,255,255,.62);max-width:200px}
-.recognition-portrait{border-radius:2px;overflow:hidden;border:1px solid var(--line-light);aspect-ratio:3/4;background:#0B0D10}
+/* R2.jpeg is a landscape 4:3 photo, so the frame must be 4:3 too (was 3/4 portrait, which cropped it) */
+.recognition-portrait{border-radius:2px;overflow:hidden;border:1px solid var(--line-light);aspect-ratio:4/3;background:#0B0D10}
 .recognition-portrait img{width:100%;height:100%;object-fit:cover;display:block}
 .recognition-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .recognition-grid figure{border-radius:2px;overflow:hidden;border:1px solid var(--line-light);background:#0B0D10;aspect-ratio:1/1}
@@ -267,7 +298,7 @@ footer{
   .approach-namecard{max-width:420px}
   .approach-cards{grid-template-columns:1fr 1fr}
   .recognition-top{grid-template-columns:1fr;gap:32px}
-  .recognition-portrait{max-width:320px;aspect-ratio:4/3}
+  .recognition-portrait{max-width:520px}
   .recognition-grid{grid-template-columns:1fr 1fr}
   .customer-card{width:190px}
   .stat-row{gap:32px}
@@ -300,11 +331,15 @@ footer{
       <span class="co">FLP Realty Sdn Bhd</span>
     </div>
     <ul class="nav-links">
-      <li><a href="#story">Story</a></li>
-      <li><a href="#approach">Approach</a></li>
-      <li><a href="#recognition">Recognition</a></li>
-      <li><a href="#customers">Customers</a></li>
+      <li><a href="#story" data-i18n="nav.story">Story</a></li>
+      <li><a href="#approach" data-i18n="nav.approach">Approach</a></li>
+      <li><a href="#recognition" data-i18n="nav.recognition">Recognition</a></li>
+      <li><a href="#customers" data-i18n="nav.customers">Customers</a></li>
     </ul>
+    <div class="lang-switch" role="group" aria-label="Language / 语言">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+    </div>
   </nav>
 </header>
 
@@ -315,16 +350,16 @@ footer{
   <div class="hero-scrim"></div>
   <div class="hero-portrait"><img src="images/Profile.jpeg" alt="Douglas Ong, Property Consultant at FLP Realty"></div>
   <div class="hero-content wrap">
-    <span class="hero-eyebrow">FLP Realty Sdn Bhd</span>
-    <h1>Property decisions you can feel good about.</h1>
-    <p class="hero-sub">
+    <span class="hero-eyebrow" data-i18n="hero.eyebrow">FLP Realty Sdn Bhd</span>
+    <h1 data-i18n="hero.h1">Property decisions you can feel good about.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">
       Douglas Ong helps clients navigate Malaysia's property market with clear
       information and a client-first approach — no pressure, just honest guidance
       from first conversation to signed deal.
     </p>
     <div class="hero-actions">
-      <a class="btn solid" href="https://wa.me/60125563818" target="_blank" rel="noopener">Chat on WhatsApp</a>
-      <a class="btn ghost" href="https://www.instagram.com/dxuglas_ong/" target="_blank" rel="noopener">View Instagram</a>
+      <a class="btn solid" data-i18n="hero.wa" href="https://wa.me/60125563818" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      <a class="btn ghost" data-i18n="hero.ig" href="https://www.instagram.com/dxuglas_ong/" target="_blank" rel="noopener">View Instagram</a>
     </div>
   </div>
 </section>
@@ -332,18 +367,18 @@ footer{
 <section class="story" id="story">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">Philosophy</span>
-      <h2>Property, made simple.</h2>
+      <span class="kicker" data-i18n="story.kicker">Philosophy</span>
+      <h2 data-i18n="story.h2">Property, made simple.</h2>
     </div>
     <div class="philosophy">
       <div class="story-frame">
         <img src="images/BG2.jpg" alt="A warm, well-kept home interior">
       </div>
       <div class="philosophy-body">
-        <p>Douglas Ong is a Property Consultant with FLP Realty Sdn Bhd, working with clients across residential and investment properties in Malaysia.</p>
-        <p>His approach is straightforward: understand what a client actually needs, then guide them toward a property that genuinely fits — without the sales pressure.</p>
-        <blockquote>Property advice built on clarity,<br>not pressure.</blockquote>
-        <p>Whether it's a first home or the next addition to a portfolio, Douglas keeps the process clear, honest, and easy to follow — from the first conversation to the signed deal.</p>
+        <p data-i18n="story.p1">Douglas Ong is a Property Consultant with FLP Realty Sdn Bhd, working with clients across residential and investment properties in Malaysia.</p>
+        <p data-i18n="story.p2">His approach is straightforward: understand what a client actually needs, then guide them toward a property that genuinely fits — without the sales pressure.</p>
+        <blockquote data-i18n="story.quote">Property advice built on clarity,<br>not pressure.</blockquote>
+        <p data-i18n="story.p3">Whether it's a first home or the next addition to a portfolio, Douglas keeps the process clear, honest, and easy to follow — from the first conversation to the signed deal.</p>
       </div>
     </div>
   </div>
@@ -357,35 +392,35 @@ footer{
       </div>
       <div class="approach-top-text">
         <div class="section-head" style="margin-bottom:0">
-          <span class="kicker">Approach</span>
-          <h2>What he focuses on.</h2>
+          <span class="kicker" data-i18n="approach.kicker">Approach</span>
+          <h2 data-i18n="approach.h2">What he focuses on.</h2>
         </div>
-        <p>Three things guide every deal Douglas works on, whether it's a first home or the fifth unit in a portfolio.</p>
+        <p data-i18n="approach.intro">Three things guide every deal Douglas works on, whether it's a first home or the fifth unit in a portfolio.</p>
       </div>
     </div>
     <div class="approach-cards">
       <div class="approach-card">
         <div class="photo"><img src="images/BG1.jpg" alt="Client-first approach"></div>
         <div class="body">
-          <span class="tag">01 / CLIENT-FIRST</span>
-          <h3>What you need, not what closes fastest</h3>
-          <p>Every conversation starts with a client's actual goals — not the listing that's easiest to sell.</p>
+          <span class="tag" data-i18n="a1.tag">01 / CLIENT-FIRST</span>
+          <h3 data-i18n="a1.h3">What you need, not what closes fastest</h3>
+          <p data-i18n="a1.p">Every conversation starts with a client's actual goals — not the listing that's easiest to sell.</p>
         </div>
       </div>
       <div class="approach-card">
         <div class="photo"><img src="images/BG6.jpg" alt="Residential neighbourhood"></div>
         <div class="body">
-          <span class="tag">02 / COVERAGE</span>
-          <h3>Residential and investment</h3>
-          <p>Works across first homes and investment-focused purchases, in Penang and beyond.</p>
+          <span class="tag" data-i18n="a2.tag">02 / COVERAGE</span>
+          <h3 data-i18n="a2.h3">Residential and investment</h3>
+          <p data-i18n="a2.p">Works across first homes and investment-focused purchases, in Penang and beyond.</p>
         </div>
       </div>
       <div class="approach-card">
         <div class="photo"><img src="images/BG4.jpg" alt="Clean architectural lines"></div>
         <div class="body">
-          <span class="tag">03 / STYLE</span>
-          <h3>Straight talk, no rush</h3>
-          <p>Numbers and process, explained plainly, with room to think before deciding.</p>
+          <span class="tag" data-i18n="a3.tag">03 / STYLE</span>
+          <h3 data-i18n="a3.h3">Straight talk, no rush</h3>
+          <p data-i18n="a3.p">Numbers and process, explained plainly, with room to think before deciding.</p>
         </div>
       </div>
     </div>
@@ -397,27 +432,29 @@ footer{
     <div class="recognition-top">
       <div class="recognition-text">
         <div class="section-head">
-          <span class="kicker">Recognition</span>
-          <h2>Ranked among Malaysia's top performers.</h2>
-          <p>Results from January 2025, among agents at FLP Realty and the wider Million Success Group network.</p>
+          <span class="kicker" data-i18n="rec.kicker">Recognition</span>
+          <h2 data-i18n="rec.h2">Team Leader | Property Advisor</h2>
+          <ul class="role-list" data-i18n="rec.p">
+            <li>New Project Specialist</li>
+            <li>Penang &amp; Kuala Lumpur</li>
+            <li>Property Investment Advisory</li>
+            <li>Buyer &amp; Investor Consultation</li>
+            <li>Team Leadership &amp; Agent Training</li>
+          </ul>
         </div>
         <div class="stat-row">
           <div class="stat">
             <div class="num">#1</div>
-            <div class="label">Top producer, January 2025, Million Success Group</div>
+            <div class="label" data-i18n="rec.s1">Top producer, January 2025, Million Success Group</div>
           </div>
           <div class="stat">
-            <div class="num">RM88.1k</div>
-            <div class="label">Commission generated in a single month</div>
-          </div>
-          <div class="stat">
-            <div class="num">Top 5</div>
-            <div class="label">Finish among all ranked agents that month</div>
+            <div class="num">836</div>
+            <div class="label" data-i18n="rec.s2">Total units sold to date</div>
           </div>
         </div>
       </div>
       <div class="recognition-portrait">
-        <img src="images/R2.jpeg" alt="Douglas Ong recognised as Top Producer">
+        <img src="images/R2.jpeg" alt="Douglas Ong receiving his Team Leader promotion award on stage, 29 September 2026">
       </div>
     </div>
     <div class="recognition-grid">
@@ -431,9 +468,9 @@ footer{
 <section class="customers" id="customers">
   <div class="wrap">
     <div class="section-head">
-      <span class="kicker">Customers</span>
-      <h2>Trusted by the people he serves.</h2>
-      <p>Every property journey is different. Douglas is grateful to every customer who has trusted him along the way — from the first conversation to a place they can truly call home.</p>
+      <span class="kicker" data-i18n="cust.kicker">Customers</span>
+      <h2 data-i18n="cust.h2">Trusted by the people he serves.</h2>
+      <p data-i18n="cust.p">Every property journey is different. Douglas is grateful to every customer who has trusted him along the way — from the first conversation to a place they can truly call home.</p>
     </div>
     <div class="customer-marquee">
       <div class="customer-track">
@@ -443,15 +480,15 @@ footer{
         <div class="customer-card"><img src="images/C4.jpeg" alt="Customer handover" loading="lazy"></div>
         <div class="customer-card"><img src="images/C5.jpeg" alt="Customer handover" loading="lazy"></div>
         <div class="customer-card"><img src="images/C6.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C1.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C2.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C3.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C4.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C5.jpeg" alt="Customer handover" loading="lazy"></div>
-        <div class="customer-card"><img src="images/C6.jpeg" alt="Customer handover" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C1.jpeg" alt="" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C2.jpeg" alt="" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C3.jpeg" alt="" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C4.jpeg" alt="" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C5.jpeg" alt="" loading="lazy"></div>
+        <div class="customer-card" aria-hidden="true"><img src="images/C6.jpeg" alt="" loading="lazy"></div>
       </div>
     </div>
-    <p class="customer-note">"Thank you for every trust, every referral, and every opportunity to be part of your property journey."</p>
+    <p class="customer-note" data-i18n="cust.note">"Thank you for every trust, every referral, and every opportunity to be part of your property journey."</p>
   </div>
 </section>
 
@@ -459,7 +496,7 @@ footer{
 
 <footer class="wrap">
   <span>&copy; <span id="year"></span> FLP Realty Sdn Bhd &middot; Douglas Ong</span>
-  <span>Where property meets strategy</span>
+  <span data-i18n="footer.tag">Where property meets strategy</span>
 </footer>
 
 <div class="bottom-bar">
@@ -486,6 +523,57 @@ footer{
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ===== EN / 中文 switch ===== */
+const ZH = {
+  'nav.story':'故事','nav.approach':'做事方式','nav.recognition':'荣誉','nav.customers':'客户',
+  'hero.eyebrow':'FLP Realty Sdn Bhd',
+  'hero.h1':'让每一个房产决定，都能安心。',
+  'hero.sub':'Douglas Ong 以清晰的信息和客户优先的态度，陪伴客户走进马来西亚房产市场——没有压力，只有坦诚的建议，从第一次交谈到签约成交。',
+  'hero.wa':'WhatsApp 联系','hero.ig':'查看 Instagram',
+  'story.kicker':'理念','story.h2':'房产，其实可以很简单。',
+  'story.p1':'Douglas Ong 是 FLP Realty Sdn Bhd 的房产顾问，服务马来西亚各地的自住与投资房产客户。',
+  'story.p2':'他的做法很直接：先弄清楚客户真正需要什么，再带他们找到真正合适的房子——不施加销售压力。',
+  'story.quote':'房产建议，<br>讲清楚，不施压。',
+  'story.p3':'无论是第一个家，还是投资组合的下一个物业，Douglas 都让整个过程清晰、诚实、容易跟进——从第一次交谈到签约成交。',
+  'approach.kicker':'做事方式','approach.h2':'他专注的事。',
+  'approach.intro':'无论是第一套自住房，还是投资组合里的第五个单位，Douglas 经手的每一笔交易都以这三点为准。',
+  'a1.tag':'01 / 客户优先','a1.h3':'你需要的，而不是最快成交的',
+  'a1.p':'每次交谈都从客户真正的目标出发，而不是最容易卖出的房子。',
+  'a2.tag':'02 / 服务范围','a2.h3':'自住与投资',
+  'a2.p':'涵盖首次购房与投资型购买，服务槟城及其他地区。',
+  'a3.tag':'03 / 风格','a3.h3':'直话直说，不赶时间',
+  'a3.p':'数字与流程讲得明明白白，让你有充分时间考虑后再决定。',
+  'rec.kicker':'荣誉','rec.h2':'团队领导 | 房产顾问',
+  'rec.p':'<li>新楼盘项目专员</li><li>槟城与吉隆坡</li><li>房产投资咨询</li><li>买家与投资者咨询</li><li>团队领导与顾问培训</li>',
+  'rec.s1':'Million Success Group 2025 年 1 月业绩第一名',
+  'rec.s2':'累计成交单位',
+  'cust.kicker':'客户','cust.h2':'深受所服务的人信任。',
+  'cust.p':'每个房产旅程都不一样。感谢每一位一路信任 Douglas 的客户——从第一次交谈，到真正能称为家的地方。',
+  'cust.note':'“谢谢每一份信任、每一次转介绍，以及每一个陪你走过房产旅程的机会。”',
+  'footer.tag':'房产与策略的交汇点'
+};
+const EN = {};
+document.querySelectorAll('[data-i18n]').forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+const TITLE = { en: document.title, zh: 'Douglas Ong · FLP Realty 房产顾问' };
+
+function setLang(lang){
+  document.documentElement.lang = lang === 'zh' ? 'zh-Hans' : 'en';
+  document.title = TITLE[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.innerHTML = (lang === 'zh' ? ZH : EN)[el.dataset.i18n];
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false');
+  });
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+document.querySelectorAll('.lang-switch button').forEach(b => {
+  b.addEventListener('click', () => setLang(b.dataset.lang));
+});
+let saved = null;
+try { saved = localStorage.getItem('lang'); } catch (e) {}
+if (saved === 'zh') setLang('zh');
 </script>
 
 </body>
